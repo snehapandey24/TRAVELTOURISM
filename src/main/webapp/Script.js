@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // ---------- Elements ----------
+   
     let tourList = document.getElementById("tourList");
     let tourSearch = document.getElementById("tourSearch");
     let noToursMessage = document.getElementById("noToursMessage");
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let isLoggedIn = false;
     let currentUserName = "";
 
-    // ---------- Helpers ----------
+    
     function formatPrice(price) {
         return "Rs " + Number(price).toLocaleString("en-IN");
     }
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
         authSection.scrollIntoView({ behavior: "smooth" });
     }
 
-    // ---------- Tours (loaded from the database) ----------
+    
     function renderTours(tours) {
         tourList.innerHTML = "";
         noToursMessage.textContent = "No tours found.";
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-    // ---------- Hotels of the selected tour ----------
+    
     function loadTourHotels(tourId) {
         return fetch("tour-hotels?tourId=" + encodeURIComponent(tourId))
             .then(function(response) { return response.ok ? response.json() : []; })
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
         hotelFields.style.display = tourHotels.length > 0 ? "block" : "none";
     }
 
-    // Search tour
+   
     tourSearch.addEventListener("input", function() {
         let text = tourSearch.value.trim().toLowerCase();
         let filtered = allTours.filter(function(tour) {
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
         renderTours(filtered);
     });
 
-    // View Tour (one listener handles every card, including ones drawn later)
+   
     tourList.addEventListener("click", function(event) {
         let button = event.target.closest(".tour-btn");
         if (!button) return;
@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("toursSection").scrollIntoView({ behavior: "smooth" });
     });
 
-    // ---------- Check if already logged in (survives page refresh) ----------
+   
     fetch("session")
         .then(function(response) {
             if (response.ok) {
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(function() { setLoggedOut(); });
 
-    // ---------- Booking form ----------
+  
     document.getElementById("bookNowBtn").addEventListener("click", function(event) {
         event.preventDefault();
 
@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     bookingFormElement.reset();
                     customerName.value = currentUserName;
                     bookingTourName.value = tourName.textContent;
-                    // rooms were used up, so reload the hotel list
+                   
                     loadTourHotels(selectedTourId).then(fillHotelSelects);
                 }
             });
@@ -337,7 +337,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // ---------- Login / Register ----------
     loginNavBtn.addEventListener("click", function(event) {
         event.preventDefault();
         openAuth("login");
@@ -478,7 +477,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 
-    // Cancel button inside the My Bookings table
+   
     myBookingsBody.addEventListener("click", function(event) {
         let button = event.target.closest("button");
         if (!button) return;
@@ -518,7 +517,7 @@ document.addEventListener("DOMContentLoaded", function() {
         myBookingsSection.style.display = "none";
     });
 
-    // ---------- Logout ----------
+
     logoutNavBtn.addEventListener("click", function(event) {
         event.preventDefault();
         fetch("session", { method: "POST" }).then(function() {
@@ -527,7 +526,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // ---------- Start ----------
-    loadTours();
 
-});
+    loadTours();
+	
+	});

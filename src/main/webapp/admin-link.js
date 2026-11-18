@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // ---------- Only admins may use this page ----------
+   
     fetch("session")
         .then(function(response) {
             if (!response.ok) {
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
             denied.style.display = "block";
         });
 
-    // ---------- Fill the Tour and Hotel dropdowns ----------
+
     function loadOptions() {
         fetch("tours")
             .then(function(response) { return response.json(); })
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-    // ---------- Show existing links ----------
+  
     function loadLinks() {
         fetch("admin/links")
             .then(function(response) { return response.json(); })
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
         sendAction(formData);
     });
 
-    // ---------- Edit / Unlink buttons in the table ----------
+    
     linkTableBody.addEventListener("click", function(event) {
         let button = event.target.closest("button");
         if (!button) return;

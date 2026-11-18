@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
         notice.style.display = "block";
     }
 
-    // Only logged-in users may search
+   
     fetch("session")
         .then(function(response) {
             if (response.ok) {

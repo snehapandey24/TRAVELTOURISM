@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         cancelEditBtn.style.display = "none";
     }
 
-    // ---------- Only admins may use this page ----------
+    
     fetch("session")
         .then(function(response) {
             if (!response.ok) {
@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
             denied.style.display = "block";
         });
 
-    // ---------- Load and show hotels ----------
     function loadHotels() {
         fetch("admin/hotels")
             .then(function(response) { return response.json(); })
@@ -97,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-    // ---------- Send an add / update / delete request ----------
+  
     function sendAction(formData, resetAfter) {
         fetch("admin/hotels", {
             method: "POST",
@@ -118,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // ---------- Save (add or update) ----------
     hotelForm.addEventListener("submit", function(event) {
         event.preventDefault();
 
@@ -136,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     cancelEditBtn.addEventListener("click", resetForm);
 
-    // ---------- Edit / Delete buttons in the table ----------
     hotelTableBody.addEventListener("click", function(event) {
         let button = event.target.closest("button");
         if (!button) return;
